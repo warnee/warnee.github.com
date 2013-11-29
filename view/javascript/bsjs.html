@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<title>bsJS Study</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="format-detection" content="telephone=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="bsJS Study" />
+	<meta name="author" content="warnee">
+	<meta name="keywords" content="bsJS" />
+	
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/3.0.2/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../../bootstrap/3.0.2/css/bootstrap-theme.css">
+
+	<style type="text/css">
+
+		body {
+		  padding-top: 70px;
+		  padding-bottom: 30px;
+		}
+
+		.theme-dropdown .dropdown-menu {
+		  display: block;
+		  position: static;
+		  margin-bottom: 20px;
+		}
+
+		.theme-showcase > p > .btn {
+		  margin: 5px 0;
+		}
+
+	</style>
+
+
+</head>
+<body>
+
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+		<div class="container">
+
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="../../index.html">warnee</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+					<li><a href="../../index.html">Home</a></li>
+					<li><a href="#about">About</a></li>
+					<li><a href="#contact">Contact</a></li>
+					<li class="dropdown active">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Study <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">java</a></li>
+							<li class="active"><a href="index.html">javascript</a></li>
+						</ul>
+					</li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">SNS <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#" onclick="openSite('http://www.facebook.com/darkwarnee')">Facebook</a></li>
+							<li><a href="#" onclick="openSite('http://twitter.com/darkwarnee')">Twitter</a></li>
+							<li><a href="#" onclick="openSite('http://gplus.to/darkwarnee')">Google+</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+
+
+	</div>
+
+	<div class="container theme-showcase">
+
+		<!-- Main jumbotron for a primary marketing message or call to action -->
+		<div class="jumbotron">
+			<h2>bsJS</h2>
+			<p>
+				최근 흥미를 가지고 공부를 하려고 하고 있는 것 중 하나가 javascript인데
+				마침 좋은 라이브러리 <a href="https://github.com/projectBS/bsJS/">bsJS</a>를 알게되서 공부도 할겸해서 bsJS 소스를 보기 시작했습니다.
+				처음 github에 가서 라이브러리를 다운받아보았더니 어라 1600줄 정도 되네요.
+				제가 javascript를 그냥 눈으로 보면서 읽고 이해할 수 없는 관계로
+				좋은 소스도 있겠다 평소 궁금했던 부분들을 bsJS는 어떻게 처리하고 있는지 알아보기로 했습니다.
+				아... 제가 보고 있는 소스가 최신은 아닙니다. 방금 확인했더니 또 바뀌어 있네요.
+			</p>
+		</div>
+
+		<div>
+			<section>
+				<h3>onload 시 자동 실행</h3>
+				<ul>
+					<li>
+						<h4>jquery를 알기 전</h4>
+						<span>
+							예전에 제가 jquery를 알기 전에는 전에는 아래와 같은 방법으로 실행했었습니다.<br/>
+							body tag에 onload 를 걸어서 실행했었지요.<br/>
+							그런데 body onload에서 스크립트를 호출하려니 불편합니다.
+						</span>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/warnee/TMvwL/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</li>
+					<li>
+						<h4>jquery를 알고난 후</h4>
+						<span>
+							jquery 알게 된 후에는 $(function() { 실행할 명령 }) 이런 식으로 사용하게되었지요.<br/>
+							js 파일을 여러개 나눠놓은 상태에서도 이 방법은 잘 실행이 되고, 심지어 여러 파일에서 각자 호출하면 각자 포함된 명령을 실행하니 편리해서  애용하고 있습니다.
+						</span>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/warnee/455ep/2/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+					</li>
+					<li>
+						<h4>bsJS 에서는</h4>
+						<span>
+							그럼 bsJS에서는 어떻게 처리하고 있을까요? bsJS도 jquery와 비슷한 호출 방식을 사용하고 있습니다.<br/>
+							bs( function(){ 실행할 명령 }) 과 같이 정의하면 실행이 됩니다.<br/>
+							jquery와 마찬가지로 여러번 호출하면 각자 포함된 명령어를 실행해 줍니다.
+						</span>
+						<iframe width="100%" height="300" src="http://jsfiddle.net/warnee/455ep/3/embedded/" allowfullscreen="allowfullscreen" frameborder="0"></iframe>
+						<br/>
+						<span>
+							자! 그럼 소스를 봐봅시다. 1600 줄이넘는 소스라서 어디가 어디인지 모르겠습니다.<br/>
+							대충 감으로 상관 없어보이는 소스들을 마구 삭제합니다.<br/>
+							삭제하고 실행해보고 디버그하고 삭제하고 실행해보고 디버그하고를 몇번 반복했더니 아래와 같은 소스가 남습니다.<br/>
+							이 남은 소스만 있으면 화면 오픈시 자동실행이 됩니다. 좋군요~ ^^ 
+							<br/>
+							살짝 주석을 달아봤는데 실력이 미천한지라 제대로 이해했는지는 모르겠습니다.<br/>
+							<b>틀린부분 있으면 마구 지적 또는 수정해 주세요~~ ^^;</b>
+						</span>
+						<script src="https://gist.github.com/warnee/7700583.js"></script>
+					</li>
+				</ul>
+			</section>
+		</div>
+
+	</div>
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="../../bootstrap/3.0.2/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../js/index.js"></script>
+
+
+</body>
+</html>
