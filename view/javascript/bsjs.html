@@ -99,9 +99,9 @@
 
 			<section id="bsjsonload">
 				<h3 style="display:inline;">onload 시 자동 실행</h3>
-				<a class="a_show" style="display:none;" href="#" onclick="$(this).parent().find('ul, a.a_hide').show();$(this).hide();">내용보기</a>
-				<a class="a_hide" href="#" onclick="$(this).parent().find('ul').hide();$(this).hide();$(this).parent().find('a.a_show').show();">내용숨기기</a>
-				<ul>
+				<a class="a_show" href="#" onclick="$(this).parent().find('ul, a.a_hide').show();$(this).hide();">내용보기</a>
+				<a class="a_hide" style="display:none;" href="#" onclick="$(this).parent().find('ul').hide();$(this).hide();$(this).parent().find('a.a_show').show();">내용숨기기</a>
+				<ul style="display:none;">
 					<li>
 						<h4>jquery를 알기 전</h4>
 						<span>
@@ -138,6 +138,60 @@
 							<b>틀린부분 있으면 마구 지적 또는 수정해 주세요~~ ^^;</b>
 						</span>
 						<script src="https://gist.github.com/warnee/7700583.js"></script>
+					</li>
+				</ul>
+			</section>
+
+			<section id="bsjsetc">
+				<h3 style="display:inline;">bsJS 기타 처리 내용</h3>
+				<a class="a_show" style="display:none;" href="#" onclick="$(this).parent().find('ul, a.a_hide').show();$(this).hide();">내용보기</a>
+				<a class="a_hide" href="#" onclick="$(this).parent().find('ul').hide();$(this).hide();$(this).parent().find('a.a_show').show();">내용숨기기</a>
+				<ul>
+					<li>
+						<h4>console 처리</h4>
+						<span>
+							console이 없는 브라우저에서도 예외가 나지 않도록 console이 없는 경우에는 alert을 대신 호출하도록 정의되어 있습니다.
+						</span>
+						<script src="https://gist.github.com/warnee/7761018.js"></script>
+					</li>
+					<li>
+						<h4>Array 확장</h4>
+						<span>
+							Array의 불편함을 해소하기 위해 prototype에 indexof를 구현했습니다.
+						</span>
+						<script src="https://gist.github.com/warnee/7761743.js"></script>
+					</li>
+					<li>
+						<h4>Date.Now</h4>
+						<span>
+							Date.Now 가 존재하면 사용<br/>
+							존재하지 않으면 new Date를 반환해줍니다.
+						</span>
+						<script src="https://gist.github.com/warnee/7761749.js"></script>
+					</li>
+					<li>
+						<h4>JSON parse, stringfy</h4>
+						<span>
+							요즘 최신 브라우저에는 거의 다 JSON처리 기능을 가지고 있습니다.<br/>
+							그런데 과거 브라우저에는 JSON처리하는 내용이 없을수도 있습니다.<br/>
+							여기서 bsjs의 철학일까라요? 고객은 브라우저 모른다! 없어도 나오게 해주자! 입니다.<br/>
+							그래서 윈도우 객체를 확인해보고 JSON처리하는 기능이 존재하지 않으면 parse와 stringify함수를 정의해 주고 있습니다.<br/>
+						</span>
+						<script src="https://gist.github.com/warnee/7761757.js"></script>
+					</li>
+				</ul>
+			</section>
+
+			<section id="bsFunction">
+			<h3 style="display:inline;">bsJS Function</h3>
+				<a class="a_show" style="display:none;" href="#" onclick="$(this).parent().find('ul, a.a_hide').show();$(this).hide();">내용보기</a>
+				<a class="a_hide" href="#" onclick="$(this).parent().find('ul').hide();$(this).hide();$(this).parent().find('a.a_show').show();">내용숨기기</a>
+				<ul>
+					<li>
+						<h4>bs.sel()</h4>
+						<span>
+							console이 없는 브라우저에서도 예외가 나지 않도록 console이 없는 경우에는 alert을 대신 호출하도록 정의되어 있습니다.
+						</span>
 					</li>
 				</ul>
 			</section>
