@@ -20,3 +20,8 @@ brew install homebrew/versions/maven30
 ### 원격 저장소의 모든 버전
 brew versions gradle
 
+
+## Tomcat 설치
+brew info tomcat  
+brew install tomcat  
+
