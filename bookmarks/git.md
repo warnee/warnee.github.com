@@ -1,5 +1,8 @@
 #GIT
 
+##git 연습 사이트
+http://learnbranch.urigit.com/
+
 ##git 설정
 
 ###git 설정파일
