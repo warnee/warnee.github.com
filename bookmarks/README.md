@@ -1,1 +1,1 @@
-hello bookmarks page
+여러 Tip이나 기타 알게된 내용 저장 중
