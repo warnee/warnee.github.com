@@ -1,0 +1,344 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>ASP.NET5 MVC6 시작하기</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>ASP.NET5 MVC6</h1>
+					<h3>시작하기</h3>
+					<p>
+						<small>Created by 정태원</small>
+					</p>
+				</section>
+
+				<section>
+					<h2>시작은 Visual Studio 2015</h2>
+					<h3>설치방법은 나중에 시간나면....</h3>
+                    <img src="image/001.png" />
+				</section>
+
+				<section>
+					<h3>파일 -> 새로 만들기 -> 프로젝트</h3>
+                    <img src="image/002.png" />
+				</section>
+
+                <section>
+                    <section>
+                        <h2>MVC6 를 시작하는 3가지 방법</h2>
+                        <ul>
+                            <li>Empty</li>
+                            <li>Web API</li>
+                            <li>Web Application</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <h2>Empty Project</h2>
+                        <p>ASP.NET 웹 프로그램을 시작하는 최소 단위 입니다.</P>
+                        <p>필요한 기능만 추가하면서 사용할 수 있어서 프로그램이 가볍습니다.</P>
+                    </section>
+                    <section>
+                        <h2>Web API Project</h2>
+                        <p>Web API 가 MVC와 통합되었습니다.</P>
+                        <p>Web API로 프로젝트를 실행하면 M(odel), V(iew) 가 빠지고 C(ontroller)만 있는 프로젝트가 생성됩니다.</P>
+                    </section>
+                    <section>
+                        <h2>Web Application Project</h2>
+                        <p>기본종합선물세트 입니다.</P>
+                        <p>MVC의 기본 설정이 잡혀있고, Razor 및 인증방식에 따라 EntityFramework가 추가되기도 합니다.</P>
+                    </section>
+				</section>
+                
+				<section>
+					<h2>Empty Project에 MVC추가하기</h2>
+					<p>실제 사용은 Web Application을 이용하는 것이 편리</p>
+                    <p>하지만 설정 방법등을 이해하기 위해 Empty 템플릿을 사용</p>
+				</section>
+
+                <section>
+                    <h2>project.json 수정</h2>
+                    <p>ASP.NET5 에서는 project.json 파일에서 Dependency 관리<p>
+                    <p>"Microsoft.AspNet.Mvc": "6.0.0-rc1-final" 추가</p>
+                    <p>"Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final" 추가</p>
+                    <p>"Microsoft.AspNet.Razor": "4.0.0-rc1-final"</p>
+                    <pre><code class="hljs" data-trim contenteditable>
+{
+  "version": "1.0.0-*",
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Razor": "4.0.0-rc1-final"
+  },
+
+  "commands": {
+    "web": "Microsoft.AspNet.Server.Kestrel"
+  },
+
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+
+  "exclude": [
+    "wwwroot",
+    "node_modules"
+  ],
+  "publishExclude": [
+    "**.user",
+    "**.vspscc"
+  ]
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h2>Startup.cs 수정</h2>
+                    <p>서비스가 시작될때 실행되는 각종 설정을 관리.</p>
+                    <pre><code class="hljs" data-trim contenteditable>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Builder;
+using Microsoft.AspNet.Hosting;
+using Microsoft.AspNet.Http;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace Empty_MVC6
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit http://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app)
+        {
+            app.UseIISPlatformHandler();
+
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello World!");
+            });
+        }
+
+        // Entry point for the application.
+        public static void Main(string[] args) => WebApplication.Run&lt;Startup&gt;(args);
+    }
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h3>ConfigureServices 메소드 수정</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+public void ConfigureServices(IServiceCollection services)
+{
+    // MVC 기능을 사용하기 위해 서비스 등록
+    services.AddMvc();
+}
+
+                    </code></pre>
+                    <h3>Configure 메소드 수정</h3>
+                    <pre><code class="hljs" data-trim contenteditable>
+public void Configure(IApplicationBuilder app)
+{
+    app.UseIISPlatformHandler();
+    // Static 파일의 사용을 위해
+    app.UseStaticFiles();
+    // 기본적인 MVC Routing 처리를 위해
+    app.UseMvc().UseMvcWithDefaultRoute();
+}
+                    </code></pre>
+                </section>
+                
+                <section>
+                    <h2>프로젝트 구조 변경</h2>
+                    <p>Controllers, Models, Views 폴더 추가</p>
+                    <img src="image/005.png" />
+                </section>
+                
+                <section>
+                    <h2>Default MVC Routing 규칙</h2>
+                    <p>{controller=Home}/{action=Index}/{id?}</p>
+                    <p>HomeController.cs, Home/Index.cshtml 필요<p>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Controller 추가</h2>
+                    </section>
+                    <section>
+                        <h2>HomeController 추가</h2>
+                        <img src="image/006.png" />
+                    </section>
+                    <section>
+                        <h2>HomeController 확인</h2>
+                        <img src="image/007.png" />
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>View 추가</h2>
+                    </section>
+                    <section>
+                        <h2>Home 폴더 추가</h2>
+                        <img src="image/008.png" />
+                    </section>
+                    <section>
+                        <h2>Index.cshtml 추가</h2>
+                        <img src="image/009.png" />
+                    </section>
+                    <section>
+                        <h2>Index.cshtml 확인</h2>
+                        <img src="image/010.png" />
+                    </section>
+                    <section>
+                        <h2>Index.cshtml 수정</h2>
+                        <img src="image/011.png" />
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>확인</h2>
+                    </section>
+                    <section>
+                        <h2>서버실행</h2>
+                        <img src="image/012.png" />
+                    </section>
+                    <section>
+                        <h2>성공!</h2>
+                        <img src="image/013.png" />
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Action 추가하기</h2>
+                    </section>
+                    <section>
+                        <h2>HomeController에 Menu method 추가</h2>
+                        <pre><code class="hljs" data-trim contenteditable>
+// GET: /Home/Menu
+public IActionResult Menu()
+{
+    return View();
+}
+                        </code></pre>
+                    </section>
+                    <section>
+                        <h2>Home/Menu.cshtml 추가</h2>
+                        <img src="image/014.png" />
+                    </section>
+                    <section>
+                        <h2>추가된 Action 동작 확인</h2>
+                        <img src="image/015.png" />
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h2>Controller 추가하기</h2>
+                    </section>
+                    <section>
+                        <h2>신규 Controller 추가</h2>
+                        <img src="image/016.png" />
+                    </section>
+                    <section>
+                        <h2>신규 View 추가</h2>
+                        <img src="image/017.png" />
+                    </section>
+                    <section>
+                        <h2>추가된 내용 확인</h2>
+                        <img src="image/018.png" />
+                    </section>
+                </section>
+                
+                <section>
+                    <h2>감사합니다.</h2>
+                    <ul>
+                        <li><a href="https://github.com/warnee/aspnet5_empty_mvc6" target="_blank">샘플소스</a></li>
+                    </ul>
+                </section>
+
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
