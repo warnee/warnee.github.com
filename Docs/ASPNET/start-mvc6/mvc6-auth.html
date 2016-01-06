@@ -41,62 +41,23 @@
 			<!-- Any section element inside of this container is displayed as a slide -->
 			<div class="slides">
 				<section>
-					<h1>ASP.NET5 MVC6</h1>
-					<h3>시작하기</h3>
+					<h1>MVC6에 인증 추가하기</h1>
+					<h4><a href="empty-mvc6.html" target="_blank">ASP.NET5 MVC6 시작하기</a> 에서 이어집니다.</h4>
 					<p>
 						<small>Created by 정태원</small>
 					</p>
 				</section>
 
 				<section>
-					<h2>시작은 Visual Studio 2015</h2>
-					<h3>설치방법은 나중에 시간나면....</h3>
-                    <img src="image/001.png" />
-				</section>
-
-				<section>
-					<h3>파일 -> 새로 만들기 -> 프로젝트</h3>
-                    <img src="image/002.png" />
-				</section>
-
-                <section>
-                    <section>
-                        <h2>MVC6 를 시작하는 3가지 방법</h2>
-                        <ul>
-                            <li>Empty</li>
-                            <li>Web API</li>
-                            <li>Web Application</li>
-                        </ul>
-                    </section>
-                    <section>
-                        <h2>Empty Project</h2>
-                        <p>ASP.NET 웹 프로그램을 시작하는 최소 단위 입니다.</P>
-                        <p>필요한 기능만 추가하면서 사용할 수 있어서 프로그램이 가볍습니다.</P>
-                    </section>
-                    <section>
-                        <h2>Web API Project</h2>
-                        <p>Web API 가 MVC와 통합되었습니다.</P>
-                        <p>Web API로 프로젝트를 실행하면 M(odel), V(iew) 가 빠지고 C(ontroller)만 있는 프로젝트가 생성됩니다.</P>
-                    </section>
-                    <section>
-                        <h2>Web Application Project</h2>
-                        <p>기본종합선물세트 입니다.</P>
-                        <p>MVC의 기본 설정이 잡혀있고, Razor 및 인증방식에 따라 EntityFramework가 추가되기도 합니다.</P>
-                    </section>
-				</section>
-                
-				<section>
-					<h2>Empty Project에 MVC추가하기</h2>
-					<p>실제 사용은 Web Application을 이용하는 것이 편리</p>
-                    <p>하지만 설정 방법등을 이해하기 위해 Empty 템플릿을 사용</p>
+					<h2>프로젝트 준비</h2>
+					<h4>기존 솔루션 복사해서 솔루션 이름만 변경</h4>
+                    <img src="image/mvc6-auth/001.png" />
 				</section>
 
                 <section>
                     <h2>project.json 수정</h2>
-                    <p>ASP.NET5 에서는 project.json 파일에서 Dependency 관리<p>
-                    <p>"Microsoft.AspNet.Mvc": "6.0.0-rc1-final" 추가</p>
-                    <p>"Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final" 추가</p>
-                    <p>"Microsoft.AspNet.Razor": "4.0.0-rc1-final"</p>
+                    <p>"Microsoft.AspNet.Authorization": "1.0.0-rc1-final"</p>
+                    <p>"Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final"</p>
                     <pre><code class="hljs" data-trim contenteditable>
 {
   "version": "1.0.0-*",
@@ -109,7 +70,9 @@
     "Microsoft.AspNet.Server.Kestrel": "1.0.0-rc1-final",
     "Microsoft.AspNet.Mvc": "6.0.0-rc1-final",
     "Microsoft.AspNet.StaticFiles": "1.0.0-rc1-final",
-    "Microsoft.AspNet.Razor": "4.0.0-rc1-final"
+    "Microsoft.AspNet.Razor": "4.0.0-rc1-final",
+    "Microsoft.AspNet.Authorization": "1.0.0-rc1-final",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-rc1-final"
   },
 
   "commands": {
